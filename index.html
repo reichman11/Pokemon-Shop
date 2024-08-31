@@ -25,6 +25,56 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <main>
+      <div class="products-wrapper">
+        <div class="product-card-box">
+          <!-- PRODUCT CARD -->
+          <div class="product-card">
+            <div class="product-card-image">
+              <img src="images/image1.png" alt="#" />
+            </div>
+            <button class="add-to-cart-btn">
+              <img src="images/pokeball.png" alt="pokeball-image" />
+              Add to Cart
+            </button>
+          </div>
+          <div class="product-text">
+            <p class="product-name">Pikachu</p>
+            <p class="product-price">$ 2000</p>
+          </div>
+        </div>
+
+        <!-- CART ICON -->
+        <div class="cart-icon">
+          <img src="images/pokeball.png" alt="pokeball-image" />
+          <span class="item-counter">0</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- CART LIST -->
+    <div class="cart-wrapper">
+      <div class="cart-header">
+        <img src="images/pokeball.png" alt="pokeball-image" />
+        <p>Your Pokeball</p>
+        <span class="close-btn"><i class="fa-solid fa-circle-xmark"></i></span>
+      </div>
+
+      <div class="cart-items-list">
+        <div class="cart-item">
+          <div>
+            <img src="images/cart-image1.png" alt="#" />
+          </div>
+          <p class="poduct-name">Pikachu</p>
+          <p class="total-product-price">$ 2000</p>
+          <div class="">
+            <span class="add-item">+</span>
+            <span class="item-counter">0</span>
+            <span class="remove-item">-</span>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
