@@ -1,0 +1,14 @@
+@mixin reset {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@mixin flex-centre {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
