@@ -55,7 +55,7 @@ main {
 .product-card img:hover {
   border-color: red;
 }
-.product-card button {
+.product-card .add-to-cart-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,12 +74,12 @@ main {
   gap: 0.5rem;
   cursor: pointer;
 }
-.product-card button img {
+.product-card .add-to-cart-btn img {
   width: 20px;
   height: 20px;
   border: none;
 }
-.product-card button:hover {
+.product-card .add-to-cart-btn:hover {
   background-color: #f8e16c;
   border-color: rgb(44, 80, 208);
 }
@@ -143,7 +143,7 @@ main {
   background-color: #037f64;
   color: #fff;
   position: fixed;
-  inset: 0 0 0 auto;
+  inset: 0 -400px 0 auto;
   transition: 0.5s;
   margin: auto;
   overflow: hidden;
@@ -195,14 +195,14 @@ main .show-cart {
   height: 50px;
 }
 
-.quantity {
+.add-remove-box {
   display: flex;
   gap: 1rem;
   font-size: 1.5rem;
   text-align: center;
 }
-.quantity .plus,
-.quantity .minus {
+.add-remove-box .add-item,
+.add-remove-box .remove-item {
   width: 30px;
   height: 30px;
   background-color: #0dbf99;
