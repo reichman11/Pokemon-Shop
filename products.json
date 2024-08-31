@@ -1,0 +1,74 @@
+[
+  {
+    "id": "1",
+    "name": "Pikachu",
+    "price": 2000,
+    "image": "image1.png"
+  },
+  {
+    "id": "2",
+    "name": "Bulbasaur",
+    "price": 1200,
+    "image": "image2.png"
+  },
+  {
+    "id": "3",
+    "name": "Charmander",
+    "price": 1800,
+    "image": "image3.png"
+  },
+  {
+    "id": "4",
+    "name": "Mew",
+    "price": 1100,
+    "image": "image4.png"
+  },
+  {
+    "id": "5",
+    "name": "Dragonite",
+    "price": 2400,
+    "image": "image5.png"
+  },
+  {
+    "id": "6",
+    "name": "Cyndaquil",
+    "price": 800,
+    "image": "image6.png"
+  },
+  {
+    "id": "7",
+    "name": "Snorlax",
+    "price": 400,
+    "image": "image7.png"
+  },
+  {
+    "id": "8",
+    "name": "Squirtle",
+    "price": 1700,
+    "image": "image8.png"
+  },
+  {
+    "id": "9",
+    "name": "Vaporeon",
+    "price": 2100,
+    "image": "image9.png"
+  },
+  {
+    "id": "10",
+    "name": "Psyduck",
+    "price": 200,
+    "image": "image10.png"
+  },
+  {
+    "id": "11",
+    "name": "Flareon",
+    "price": 1900,
+    "image": "image11.png"
+  },
+  {
+    "id": "12",
+    "name": "Gengar",
+    "price": 300,
+    "image": "image12.png"
+  }
+]
