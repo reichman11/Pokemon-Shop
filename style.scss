@@ -163,6 +163,7 @@ body {
     padding: 0 1rem;
 
     .cart-item {
+      display: none;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -192,6 +193,10 @@ body {
         }
       }
     }
+    .show-cart-item {
+      display: none;
+      transition: 5s;
+    }
   }
 }
 
@@ -210,5 +215,7 @@ body {
 // JAVASCRIPT CLASS FOR SHOW CART
 .show-cart {
   inset: 0 0 0 auto;
+}
+main .show-cart {
   transform: translateX(-250px);
 }

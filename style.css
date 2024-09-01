@@ -157,6 +157,7 @@ body main .products-wrapper .cart-icon .item-counter {
   padding: 0 1rem;
 }
 .cart-wrapper .cart-items-list .cart-item {
+  display: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -182,6 +183,10 @@ body main .products-wrapper .cart-icon .item-counter {
   border-radius: 50%;
   cursor: pointer;
 }
+.cart-wrapper .cart-items-list .show-cart-item {
+  display: none;
+  transition: 5s;
+}
 
 .add-to-cart-options {
   font-size: 1.25rem;
@@ -196,5 +201,8 @@ body main .products-wrapper .cart-icon .item-counter {
 
 .show-cart {
   inset: 0 0 0 auto;
+}
+
+main .show-cart {
   transform: translateX(-250px);
 }/*# sourceMappingURL=style.css.map */
