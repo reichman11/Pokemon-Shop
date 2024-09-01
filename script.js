@@ -18,6 +18,7 @@ const plusItem = () => {
   const addItem = document.querySelector(".add-item");
   addItem.addEventListener("click", () => {
     counter++;
+    cartItem.classList.remove("show-cart-item");
   });
 };
 
@@ -36,6 +37,7 @@ const minusItem = () => {
 const changeToAddToCartBtn = () => {
   addToCartBtn.innerHTML = `<img src="images/pokeball.png" alt="pokeball-image" />Add to
   Cart`;
+  cartItem.classList.add("show-cart-item");
   counter = 1;
 };
 
@@ -46,13 +48,12 @@ const changeToChoiceOfItems = () => {
                                 <span class="remove-item">-</span>
                               </div>`;
 
-  cartItem.classList.toggle("show-cart-item");
-
   plusItem();
   minusItem();
 };
 
 const addToCartBtn = document.querySelector(".add-to-cart-btn");
 addToCartBtn.addEventListener("click", () => {
+  cartItem.classList.remove("show-cart-item");
   changeToChoiceOfItems();
 });
