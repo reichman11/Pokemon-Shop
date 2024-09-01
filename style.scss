@@ -128,9 +128,9 @@ body {
   position: fixed;
   inset: 0 -400px 0 auto;
   transition: 0.5s;
-  margin: auto;
-  overflow: hidden;
+  margin: auto 0;
   border: 5px solid $product-image-border-color;
+  overflow: hidden;
 
   .cart-header {
     display: flex;
@@ -163,7 +163,6 @@ body {
     padding: 0 1rem;
 
     .cart-item {
-      display: none;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -195,7 +194,6 @@ body {
     }
     .show-cart-item {
       display: none;
-      transition: 5s;
     }
   }
 }
@@ -216,6 +214,6 @@ body {
 .show-cart {
   inset: 0 0 0 auto;
 }
-main .show-cart {
-  transform: translateX(-250px);
-}
+// main .show-cart {
+//   transform: translateX(-250px);
+// }
