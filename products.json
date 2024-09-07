@@ -27,25 +27,25 @@
     "id": "5",
     "name": "Dragonite",
     "price": 2400,
-    "image": "image5.png"
+    "image": "image5.jpg"
   },
   {
     "id": "6",
     "name": "Cyndaquil",
     "price": 800,
-    "image": "image6.png"
+    "image": "image6.jpg"
   },
   {
     "id": "7",
     "name": "Snorlax",
     "price": 400,
-    "image": "image7.png"
+    "image": "image7.jpg"
   },
   {
     "id": "8",
     "name": "Squirtle",
     "price": 1700,
-    "image": "image8.png"
+    "image": "image8.jpg"
   },
   {
     "id": "9",
@@ -57,18 +57,6 @@
     "id": "10",
     "name": "Psyduck",
     "price": 200,
-    "image": "image10.png"
-  },
-  {
-    "id": "11",
-    "name": "Flareon",
-    "price": 1900,
-    "image": "image11.png"
-  },
-  {
-    "id": "12",
-    "name": "Gengar",
-    "price": 300,
-    "image": "image12.png"
+    "image": "image10.jpg"
   }
 ]
