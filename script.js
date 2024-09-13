@@ -3,7 +3,6 @@ const closeCart = document.querySelector(".close-btn");
 const cart = document.querySelector(".cart-wrapper");
 
 let cartCounter = document.querySelector(".item-counter");
-const cartItem = document.querySelector(".cart-item");
 
 // Mapa pro uložení počítadel jednotlivých produktů
 const productCounters = {};
@@ -44,12 +43,13 @@ const addDataToHTML = () => {
                             </div>
                             <div class="product-text">
                               <p class="name-of-pokemon" data-product-id="${product.id}">${product.name}</p>
-                              <p class="price-of-pokemon" data-product-id="${product.id}">${product.price}</p>
+                              <p class="price-of-pokemon" data-product-id="${product.id}">$ ${product.price}</p>
                             </div>`;
+
     productListHTML.appendChild(newProduct);
 
     // Inicializace počítadla pro každý produkt
-    productCounters[product.id] = 1; // Výchozí hodnota počítadla pro každý produkt
+    productCounters[product.id] = 0; // Výchozí hodnota počítadla pro každý produkt
   });
 
   attachEventListeners();
@@ -65,8 +65,46 @@ const attachEventListeners = () => {
         .closest("button")
         .getAttribute("data-product-id");
       changeToChoiceOfItems(e.target.closest("button"), productId);
+      addToCart(productId); // Přidání položky do košíku
     });
   });
+};
+
+// Přidání položky do košíku
+const addToCart = (productId) => {
+  const cartItemsList = document.querySelector(".cart-items-list");
+  let cartItem = document.querySelector(
+    `.cart-item[data-product-id="${productId}"]`
+  );
+
+  if (!cartItem) {
+    cartItem = document.createElement("div");
+    cartItem.classList.add("cart-item");
+    cartItem.setAttribute("data-product-id", productId);
+
+    const product = products.find((p) => p.id == productId);
+    cartItem.innerHTML = `<div>
+                            <img src="images/${product.preview}" alt="#" data-product-id="${product.id}" />
+                          </div>
+                          <p class="product-name">${product.name}</p>
+                          <p class="total-product-price" data-product-id="${product.id}">$ ${product.price}</p>
+                          <div class="add-remove-box">
+                            <span class="add-item">+</span>
+                            <span class="item-counter">${productCounters[productId]}</span>
+                            <span class="remove-item">-</span>
+                          </div>`;
+
+    cartItemsList.appendChild(cartItem);
+
+    // Přidání posluchačů událostí na tlačítka "+" a "-"
+    cartItem.querySelector(".add-item").addEventListener("click", () => {
+      updateCounter(productId, 1);
+    });
+
+    cartItem.querySelector(".remove-item").addEventListener("click", () => {
+      updateCounter(productId, -1);
+    });
+  }
 };
 
 // Změna tlačítka na volbu položek
@@ -85,19 +123,18 @@ const changeToChoiceOfItems = (button, productId) => {
   const removeItemBtn = button.querySelector(".remove-item");
 
   // Přidání event listenerů pro tlačítka "+", "-"
-  addItemBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); // Zamezení opětovnému kliknutí na rodičovský button
+  addItemBtn.addEventListener("click", () => {
     updateCounter(productId, 1); // Zvýšíme o 1
     button.querySelector(".number-of-items").textContent =
       productCounters[productId]; // Aktualizace zobrazení počtu položek
   });
 
-  removeItemBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); // Zamezení opětovnému kliknutí na rodičovský button
+  removeItemBtn.addEventListener("click", () => {
     updateCounter(productId, -1); // Snížíme o 1
 
     if (productCounters[productId] <= 0) {
-      changeToAddToCartBtn(button, productId); // Pokud je počet 0, změň tlačítko zpět na původní
+      changeBtnToAddToCart(button, productId); // Pokud je počet 0, změň tlačítko zpět na původní
+      removeItemFromCart(productId); // Odstraň položku z košíku
     } else {
       button.querySelector(".number-of-items").textContent =
         productCounters[productId]; // Aktualizace zobrazení počtu položek
@@ -106,9 +143,8 @@ const changeToChoiceOfItems = (button, productId) => {
 };
 
 // Změna tlačítka zpět na "Add to Cart"
-const changeToAddToCartBtn = (button, productId) => {
-  productCounters[productId] = 1; // Resetujeme počítadlo
-
+const changeBtnToAddToCart = (button, productId) => {
+  productCounters[productId] = 0; // Restart počítadla
   button.innerHTML = `<img src="images/pokeball.png" alt="pokeball-image" />Add to Cart`;
 };
 
@@ -117,26 +153,26 @@ const updateCounter = (productId, change) => {
   let currentCount = productCounters[productId];
   currentCount += change;
 
-  if (currentCount < 0) currentCount = 0; // Zamezení počtu menšího než 0
+  if (currentCount < 0) {
+    currentCount = 0;
+  }
 
   productCounters[productId] = currentCount; // Aktualizace počítadla pro konkrétní produkt
+  const cartItemCounter = document.querySelector(
+    `.cart-item[data-product-id="${productId}"] .item-counter`
+  );
 
-  updateTotalPrice(productId, currentCount);
+  if (cartItemCounter) {
+    cartItemCounter.textContent = currentCount;
+  }
 };
 
-// Aktualizace celkové ceny
-const updateTotalPrice = (productId, count) => {
-  const productPriceElement = document.querySelector(
-    `.product-text[data-product-id="${productId}"] .price-of-pokemon`
+// Odstranění položky z košíku
+const removeItemFromCart = (productId) => {
+  const cartItem = document.querySelector(
+    `.cart-item[data-product-id="${productId}"]`
   );
-  const totalPriceElement = document.querySelector(
-    `.total-product-price[data-product-id="${productId}"]`
-  );
-
-  if (productPriceElement && totalPriceElement) {
-    const productPrice = parseFloat(productPriceElement.textContent);
-    totalPriceElement.textContent = `Total: $ ${(productPrice * count).toFixed(
-      2
-    )}`;
+  if (cartItem) {
+    cartItem.remove();
   }
 };
