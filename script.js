@@ -48,8 +48,7 @@ const addDataToHTML = () => {
 
     productListHTML.appendChild(newProduct);
 
-    // Inicializace počítadla pro každý produkt
-    productCounters[product.id] = 0; // Výchozí hodnota počítadla pro každý produkt
+    productCounters[product.id] = 1; // Výchozí hodnota počítadla pro každý produkt
   });
 
   attachEventListeners();
@@ -90,7 +89,7 @@ const addToCart = (productId) => {
                           <p class="total-product-price" data-product-id="${product.id}">$ ${product.price}</p>
                           <div class="add-remove-box">
                             <span class="add-item">+</span>
-                            <span class="item-counter">${productCounters[productId]}</span>
+                            <span class="item-counter" data-product-id="${product.id}">${productCounters[productId]}</span>
                             <span class="remove-item">-</span>
                           </div>`;
 
@@ -114,7 +113,7 @@ const changeToChoiceOfItems = (button, productId) => {
   button.innerHTML = `
     <div class="add-to-cart-options">
       <span class="add-item">+</span>
-      <span class="number-of-items">${counter}</span>
+      <span class="number-of-items" data-product-id="${productId}">${counter}</span>
       <span class="remove-item">-</span>
     </div>`;
 
@@ -124,9 +123,9 @@ const changeToChoiceOfItems = (button, productId) => {
 
   // Přidání event listenerů pro tlačítka "+", "-"
   addItemBtn.addEventListener("click", () => {
-    updateCounter(productId, 1); // Zvýšíme o 1
     button.querySelector(".number-of-items").textContent =
       productCounters[productId]; // Aktualizace zobrazení počtu položek
+    updateCounter(productId, 1); // Zvýšíme o 1
   });
 
   removeItemBtn.addEventListener("click", () => {
@@ -144,7 +143,7 @@ const changeToChoiceOfItems = (button, productId) => {
 
 // Změna tlačítka zpět na "Add to Cart"
 const changeBtnToAddToCart = (button, productId) => {
-  productCounters[productId] = 0; // Restart počítadla
+  productCounters[productId] = 1; // Restart počítadla
   button.innerHTML = `<img src="images/pokeball.png" alt="pokeball-image" />Add to Cart`;
 };
 
@@ -153,17 +152,37 @@ const updateCounter = (productId, change) => {
   let currentCount = productCounters[productId];
   currentCount += change;
 
-  if (currentCount < 0) {
-    currentCount = 0;
+  // Zabráníme záporným hodnotám
+  if (currentCount <= 0) {
+    currentCount = 1; // Nastavíme na 0, pokud by se dostalo pod 0
+
+    // Změna tlačítka zpět na "Add to Cart", pokud je počet 0
+    const productCardButton = document.querySelector(
+      `.add-to-cart-btn[data-product-id="${productId}"]`
+    );
+    if (productCardButton) {
+      changeBtnToAddToCart(productCardButton, productId);
+    }
+
+    // Odstranění položky z košíku
+    removeItemFromCart(productId);
   }
 
   productCounters[productId] = currentCount; // Aktualizace počítadla pro konkrétní produkt
+
+  // Aktualizace počítadla pro košík
+  productCounters[productId] = currentCount;
   const cartItemCounter = document.querySelector(
     `.cart-item[data-product-id="${productId}"] .item-counter`
   );
+  // Aktualizace počítadla na tlačítku produktové karty
+  const productCardCounter = document.querySelector(
+    `.add-to-cart-btn[data-product-id="${productId}"] .number-of-items`
+  );
 
-  if (cartItemCounter) {
+  if (cartItemCounter && productCardCounter) {
     cartItemCounter.textContent = currentCount;
+    productCardCounter.textContent = currentCount;
   }
 };
 
