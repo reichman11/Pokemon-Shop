@@ -153,8 +153,6 @@ body main .products-wrapper .cart-icon .item-counter {
 .cart-wrapper .cart-items-list {
   overflow: auto;
   max-height: 600px;
-  margin: 1rem;
-  padding: 0 1rem;
 }
 .cart-wrapper .cart-items-list .cart-item {
   display: flex;
@@ -167,12 +165,14 @@ body main .products-wrapper .cart-icon .item-counter {
 .cart-wrapper .cart-items-list .cart-item img {
   width: 50px;
   height: 50px;
+  margin: 0.5rem 0 0.5rem 1rem;
 }
 .cart-wrapper .cart-items-list .cart-item .add-remove-box {
   display: flex;
   gap: 1rem;
   font-size: 1.5rem;
   text-align: center;
+  padding-right: 1rem;
 }
 .cart-wrapper .cart-items-list .cart-item .add-remove-box .add-item,
 .cart-wrapper .cart-items-list .cart-item .add-remove-box .remove-item {
