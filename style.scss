@@ -158,7 +158,7 @@ body {
 
   .cart-items-list {
     overflow: auto;
-    max-height: 600px;
+    max-height: 400px;
 
     .cart-item {
       display: flex;
@@ -194,6 +194,15 @@ body {
     }
     .show-cart-item {
       display: none;
+    }
+  }
+  .total-cart-price-box {
+    font-size: 1.5rem;
+
+    .total-price {
+      position: absolute;
+      bottom: 40px;
+      left: 20px;
     }
   }
 }

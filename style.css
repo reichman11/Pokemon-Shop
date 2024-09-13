@@ -108,7 +108,7 @@ body main .products-wrapper .cart-icon .item-counter {
   position: absolute;
   width: 10px;
   height: 10px;
-  background-color: green;
+  background-color: #037f64;
   border: 2px solid black;
   color: white;
   padding: 0.8rem;
@@ -152,7 +152,7 @@ body main .products-wrapper .cart-icon .item-counter {
 }
 .cart-wrapper .cart-items-list {
   overflow: auto;
-  max-height: 600px;
+  max-height: 400px;
 }
 .cart-wrapper .cart-items-list .cart-item {
   display: flex;
@@ -184,6 +184,14 @@ body main .products-wrapper .cart-icon .item-counter {
 }
 .cart-wrapper .cart-items-list .show-cart-item {
   display: none;
+}
+.cart-wrapper .total-cart-price-box {
+  font-size: 1.5rem;
+}
+.cart-wrapper .total-cart-price-box .total-price {
+  position: absolute;
+  bottom: 40px;
+  left: 20px;
 }
 
 .add-to-cart-options {
