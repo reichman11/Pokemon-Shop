@@ -188,7 +188,7 @@ body main .products-wrapper .cart-icon .item-counter {
 .cart-wrapper .total-cart-price-box {
   font-size: 1.5rem;
 }
-.cart-wrapper .total-cart-price-box .total-price {
+.cart-wrapper .total-cart-price-box .total-cart-price {
   position: absolute;
   bottom: 50px;
   left: 20px;
