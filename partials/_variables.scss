@@ -1,21 +1,25 @@
 //COLOURS
 $background-color: #01c298;
-$products-wrapper-background: #037f643d;
+$products-wrapper-background: #037f6416;
 
-$product-image-border-color: black;
-$hover-product-image-border-color: red;
-$add-to-cart-button-background: white;
+// PRODUCT CARD COLORS
+$product-image-border-color: #000000;
+$hover-product-image-border-color: #0000009d;
+$add-to-cart-button-background: #ffffff;
 $hover-add-to-cart-button-background: #f8e16c;
-$hover-add-to-cart-button-border: rgb(44, 80, 208);
+$hover-add-to-cart-button-border: #2c50d0;
 
-$item-counter-background: #037f64;
-$item-color-text: white;
-
+// CART COLORS
 $cart-wrapper-background: #037f64;
 $add-remove-cart-background-btn: #0dbf99;
 $even-item-list-background: #05a683ab;
 $close-cart-btn-color: #0e4f37;
 
+// CART ITEM COLORS
+$item-counter-background: #037f64;
+$item-color-text: #ffffff;
+
+// SCROLL BAR COLORS
 $scroll-bar-background: #0dbf99;
 $scroll-bar-color: #068066;
 $scroll-bar-border-color: #0dbf99;
