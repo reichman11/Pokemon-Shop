@@ -91,6 +91,12 @@ body main .products-wrapper .product-card-box .product-card .product-text .produ
 body main .products-wrapper .product-card-box .product-card .product-text .product-price {
   font-weight: bold;
 }
+@media screen and (max-width: 768px) {
+  body main .products-wrapper .product-card-box {
+    width: 100%;
+    padding: 0;
+  }
+}
 body main .products-wrapper .cart-icon {
   position: absolute;
   top: -1rem;
@@ -116,6 +122,12 @@ body main .products-wrapper .cart-icon .item-counter {
   font-size: 1rem;
   top: 35px;
   right: -10px;
+}
+@media screen and (max-width: 768px) {
+  body main {
+    width: 100%;
+    padding: 1.5rem;
+  }
 }
 
 .cart-wrapper {
@@ -192,6 +204,12 @@ body main .products-wrapper .cart-icon .item-counter {
   position: absolute;
   bottom: 50px;
   left: 20px;
+}
+@media screen and (max-width: 768px) {
+  .cart-wrapper {
+    width: 350px;
+    font-size: 1rem;
+  }
 }
 
 .add-to-cart-options {

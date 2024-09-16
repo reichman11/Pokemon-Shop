@@ -88,6 +88,10 @@ body {
             }
           }
         }
+        @media screen and (max-width: $mobile-breakpoint) {
+          width: 100%;
+          padding: 0;
+        }
       }
       // CART ICON STYLES
       .cart-icon {
@@ -116,6 +120,11 @@ body {
           right: -10px;
         }
       }
+    }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      width: 100%;
+      padding: 1.5rem;
     }
   }
 }
@@ -204,6 +213,10 @@ body {
       bottom: 50px;
       left: 20px;
     }
+  }
+  @media screen and (max-width: $mobile-breakpoint) {
+    width: 350px;
+    font-size: 1rem;
   }
 }
 
