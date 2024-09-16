@@ -19,8 +19,6 @@ const initApp = () => {
     .catch((error) => console.error("Error loading JSON:", error));
 };
 
-initApp();
-
 // PŘIDÁNÍ DAT DO HTML
 const addDataToHTML = () => {
   const productListHTML = document.querySelector(".product-card-box");
@@ -103,7 +101,6 @@ const addToCart = (id) => {
 // ZMĚNA TLAČÍTKA NA VOLBU POČTU POLOŽEK
 const changeToChoiceOfItems = (button, id) => {
   const counter = productCounters[id]; // POČÍTADLO PRO JEDNOTLÍVÝ PRODUKT
-
   button.innerHTML = `
       <div class="add-to-cart-options">
         <span class="add-item">+</span>
@@ -130,10 +127,8 @@ const changeToChoiceOfItems = (button, id) => {
         removeItemFromCart(id);
       } else {
         const numberOfItemsElem = button.querySelector(".number-of-items");
-
-        if (numberOfItemsElem) {
+        if (numberOfItemsElem)
           numberOfItemsElem.textContent = productCounters[id];
-        }
       }
     });
   }
@@ -149,87 +144,63 @@ const changeBtnToAddToCart = (button, id) => {
 const updateCounter = (id, change) => {
   let currentCount = productCounters[id];
   currentCount += change;
-
   if (currentCount <= 0) {
     currentCount = 1;
-
     const productCardButton = document.querySelector(
       `.add-to-cart-btn[product-id="${id}"]`
     );
-    if (productCardButton) {
-      changeBtnToAddToCart(productCardButton, id);
-    }
-
+    if (productCardButton) changeBtnToAddToCart(productCardButton, id);
     removeItemFromCart(id);
   }
-
   productCounters[id] = currentCount;
-
-  // AKTUALIZUJE POČÍTADLO V KOŠÍKU
   const cartItemCounter = document.querySelector(
     `.item-counter[product-id="${id}"]`
   );
-
-  // AKTUALIZUJE POČÍTADLO V TLAČÍTKU PRODUKTOVÉ KARTY
   const btnItemCounter = document.querySelector(
     `.number-of-items[product-id="${id}"]`
   );
-
   if (cartItemCounter && btnItemCounter) {
     cartItemCounter.textContent = currentCount;
     btnItemCounter.textContent = currentCount;
   }
-
-  // SOUČET CEN JEDNOTLIVÝCH PRODUKTŮ
   const totalProductPrice = document.querySelector(
     `.total-product-price[product-id="${id}"]`
   );
   const productPrice = document.querySelector(
     `.price-of-pokemon[product-id="${id}"]`
   );
-
-  if (!productPrice || !totalProductPrice) {
-    return;
+  if (productPrice && totalProductPrice) {
+    const productPriceNumber = parseFloat(
+      productPrice.textContent.replace("$", "").trim()
+    );
+    const itemCount = parseInt(cartItemCounter.textContent);
+    const totalPrice = parseFloat(productPriceNumber * itemCount);
+    totalProductPrice.innerHTML = `$ ${totalPrice}`;
+    updateTotalPrice();
   }
-
-  let productPriceNumber = parseFloat(
-    productPrice.textContent.replace("$", "").trim()
-  );
-
-  let itemCount = parseInt(cartItemCounter.textContent);
-  let totalPrice = parseFloat(productPriceNumber * itemCount);
-
-  totalProductPrice.innerHTML = `$ ${totalPrice}`;
-
-  updateTotalPrice();
 };
 
 // AKTUALIZUJE NÁM CELKOVOU CENU POLOŽEK
 const updateTotalPrice = () => {
   let totalPrice = 0;
-
   const productPrices = document.querySelectorAll(".total-product-price");
-
   productPrices.forEach((priceElement) => {
     const priceText = priceElement.textContent.replace("$", "").trim();
     const price = parseFloat(priceText);
 
-    if (price) {
-      totalPrice += price;
-    }
+    if (price) totalPrice += price;
   });
 
   const totalCartPrice = document.querySelector(".total-cart-price");
-  if (totalCartPrice) {
+  if (totalCartPrice)
     totalCartPrice.textContent = `Total price: $ ${totalPrice}`;
-  }
 };
 
 // ODSTRANĚNÍ JEDNOTLIVÝCH POLOŽEK V KOŠÍKU
 const removeItemFromCart = (id) => {
   const cartItem = document.querySelector(`.cart-item[product-id="${id}"]`);
-  if (cartItem) {
-    cartItem.remove();
-  }
+  if (cartItem) cartItem.remove();
   updateTotalPrice();
 };
+
+initApp();
